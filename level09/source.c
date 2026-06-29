@@ -21,7 +21,7 @@ int secret_backdoor(void)
 
 void handle_msg(void)
 {
-    char v0;  // [bp-0xc8]
+    struct_0 v0;  // [bp-0xc8]
     unsigned long long flag;  // [bp-0x3c]
     unsigned long long choice;  // [bp-0x34]
     unsigned long long flag2;  // [bp-0x2c]
@@ -62,7 +62,7 @@ void set_msg(struct_0 *a0)
 
 extern unsigned long stdin;
 
-void set_username(char *a0)
+void set_username(struct_0 *a0)
 {
     unsigned long long *cur;  // rdi
     unsigned long long v4;  // rcx
@@ -85,7 +85,7 @@ void set_username(char *a0)
             printf(">: Welcome, %s", a0 + 140);
             return;
         }
-        a0[140 + j] = v0[j];
+        a0->padding_0[140 + j] = v0[j];
     }
     printf(">: Welcome, %s", a0 + 140);
     return;
