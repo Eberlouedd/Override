@@ -1,22 +1,29 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/prctl.h>
+#include <sys/ptrace.h>
+#include <sys/wait.h>
+
 char a_user_name[100]; // idb
 
-_BOOL4 verify_user_name()
+int verify_user_name()
 {
   puts("verifying username....\n");
   return memcmp(a_user_name, "dat_wil", 7u) != 0;
 }
 
 //----- (080484A3) --------------------------------------------------------
-_BOOL4 __cdecl verify_user_pass(const void *a1)
+int verify_user_pass(const void *a1)
 {
   return memcmp(a1, "admin", 5u) != 0;
 }
 
 //----- (080484D0) --------------------------------------------------------
-int __cdecl main(int argc, const char **argv, const char **envp)
+int main(int argc, const char **argv, const char **envp)
 {
   char s[64]; // [esp+1Ch] [ebp-4Ch] BYREF
-  _BOOL4 v5; // [esp+5Ch] [ebp-Ch]
+  int v5; // [esp+5Ch] [ebp-Ch]
 
   memset(s, 0, sizeof(s));
   v5 = 0;

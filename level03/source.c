@@ -1,14 +1,21 @@
-int __cdecl decrypt(char a1)
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/prctl.h>
+#include <sys/ptrace.h>
+#include <sys/wait.h>
+
+int decrypt(char a1)
 {
   unsigned int i; // [esp+20h] [ebp-28h]
   unsigned int v3; // [esp+24h] [ebp-24h]
-  _DWORD v4[7]; // [esp+2Bh] [ebp-1Dh] BYREF
+  int v4[7]; // [esp+2Bh] [ebp-1Dh] BYREF
 
-  *(_DWORD *)((char *)&v4[4] + 1) = __readgsdword(0x14u);
+  v4[5] = __readgsdword(0x14u);
   strcpy((char *)v4, "Q}|u`sfg~sf{}|a3");
   v3 = strlen((const char *)v4);
   for ( i = 0; i < v3; ++i )
-    *((_BYTE *)v4 + i) ^= a1;
+    *(v4 + i) ^= a1;
   if ( !strcmp((const char *)v4, "Congratulations!") )
     return system("/bin/sh");
   else
@@ -17,7 +24,7 @@ int __cdecl decrypt(char a1)
 // 8048746: positive sp value 4 has been found
 
 //----- (08048747) --------------------------------------------------------
-int __cdecl test(int a1, int a2)
+int test(int a1, int a2)
 {
   int result; // eax
   char v3; // al
@@ -50,13 +57,10 @@ int __cdecl test(int a1, int a2)
 }
 
 //----- (0804885A) --------------------------------------------------------
-int __cdecl main(int argc, const char **argv, const char **envp)
+int main(int argc, const char **argv, const char **envp)
 {
-  time_t v3; // eax
   int savedregs; // [esp+20h] [ebp+0h] BYREF
 
-  v3 = time(nullptr);
-  srand(v3);
   puts("***********************************");
   puts("*\t\tlevel03\t\t**");
   puts("***********************************");
