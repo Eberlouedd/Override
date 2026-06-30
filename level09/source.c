@@ -6,8 +6,9 @@
 #include <sys/wait.h>
 
 typedef struct struct_0 {
-    char padding_0[180];
-    unsigned int field_b4;
+    char msg[140];
+    char username[40];
+    unsigned int len;
 } struct_0;
 
 extern unsigned long stdin;
@@ -56,7 +57,7 @@ void set_msg(struct_0 *a0)
     puts(">: Msg @Unix-Dude");
     printf(">>: ");
     fgets(&v0, 0x400, stdin);
-    strncpy(a0, &v0, a0->field_b4);
+    strncpy(a0->msg, &v0, a0->len);
     return;
 }
 
@@ -85,7 +86,7 @@ void set_username(struct_0 *a0)
             printf(">: Welcome, %s", a0 + 140);
             return;
         }
-        a0->padding_0[140 + j] = v0[j];
+        a0->username[j] = v0[j];
     }
     printf(">: Welcome, %s", a0 + 140);
     return;
