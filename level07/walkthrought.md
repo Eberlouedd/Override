@@ -144,3 +144,10 @@ quit
 EOF
 ```
 
+```
+cat /tmp/payload.txt - | ./level07 
+```
+
+```
+cat /home/users/level08/.pass 
+```
