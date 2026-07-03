@@ -1,4 +1,4 @@
-# Level09
+## 1. Identifier la fonction cachée
 
 La première chose que l'on remarque est la présence d'une fonction `secret_backdoor()` qui n'est jamais appelée par le programme.
 
@@ -21,7 +21,7 @@ On récupère d'abord son adresse :
 $1 = {<text variable, no debug info>} 0x55555555488c <secret_backdoor>
 ```
 
-## Analyse de la vulnérabilité
+## 2. Analyser la vulnérabilité
 
 La structure utilisée par le programme est la suivante :
 
@@ -74,7 +74,7 @@ strncpy(msg->msg, buffer, msg->len);
 
 `strncpy()` copie **255 octets** dans un buffer prévu pour **140 octets**, ce qui provoque un buffer overflow sur la pile.
 
-## Recherche de l'offset
+## 3. Recherche de l'offset
 
 On génère un motif unique avec pwntools :
 
@@ -119,7 +119,7 @@ Comme le programme est en 64 bits, le **saved RBP** occupe 8 octets. L'adresse d
 
 L'offset permettant d'écraser l'adresse de retour est donc **200**.
 
-## Construction du payload
+## 4. Construire le payload
 
 Le payload est composé de :
 
