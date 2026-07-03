@@ -18,7 +18,7 @@ On récupère d'abord son adresse :
 
 ```gdb
 (gdb) p secret_backdoor
-$1 = {<text variable, no debug info>} 0x55555555488c <secret_backdoor>
+0x55555555488c <secret_backdoor>
 ```
 
 ## 2. Analyser la vulnérabilité
